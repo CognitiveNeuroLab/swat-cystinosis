@@ -1,0 +1,9 @@
+Scenario - 
+Logfile written - 6/22/2010 10:26:06 AM
+
+Trial	Event Type	Code	Time	TTime	Uncertainty	Duration	Uncertainty	ReqTime	ReqDur
+
+1	Picture	62	230	0	2	2013	4	0	2000
+2	Picture	204	6436	0	2	1342	3	0	1200
+2	Response	1	12196	5760	1
+2	Quit		19262	12826	
