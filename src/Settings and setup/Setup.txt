@@ -1,0 +1,7 @@
+The "viewsonic VP2655wb" screen is positioned 97cm from the chinrest. 
+The eyetracker is positioned on the table with the chinrest
+The chinrest is positioned so that the participants eyelevel is at 3quarters (not center but 1 quarter higher, this is important for eyetracker) of the screen
+The chair is positioned so that the participant is most confortable with the chinrest (the chinrest should be moved as few as possible)
+If participant cannot reach the floor make sure to put steps between floor and feet (makes kids move less)
+
+Participant always uses mouse to respond
