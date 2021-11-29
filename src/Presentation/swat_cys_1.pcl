@@ -202,7 +202,7 @@ begin
 	wait_tr = wait_tr +1;
 end;
 wait_trial.present();
-
+type_trial.present();
 loop
    start = 1
 until
@@ -365,8 +365,8 @@ begin
          
          change.add_part(my_cross, 0, 0);
          
-         vis_se.set_event_code(the_code_str);
-         vis_se.set_port_code(the_code);
+         trigger_event.set_event_code(the_code_str);
+         trigger_event.set_port_code(the_code);
 			##ET stuff
 			# this is also added to the eyelink file and will make it possible for you to afterwards see when a new trail started using the EDF file. You will need this to be able to tell which trial happened. 
 			EyeLink.send_command("record_status_message 'trial " + string(start) + "/" + string(total_trials) + "'"); #in this case i = the int that counts the trials, you should both change the 'visual trial and the "/start'" 
@@ -398,8 +398,8 @@ begin
          
          change.add_part(my_cross, 0, 0);                           
                                  
-         vis_se.set_event_code(the_code_str);
-         vis_se.set_port_code(the_code);
+         trigger_event.set_event_code(the_code_str);
+         trigger_event.set_port_code(the_code);
 			##ET stuff
 			# this is also added to the eyelink file and will make it possible for you to afterwards see when a new trail started using the EDF file. You will need this to be able to tell which trial happened. 
 			EyeLink.send_command("record_status_message 'trial " + string(start) + "/" + string(total_trials) + "'"); #in this case i = the int that counts the trials, you should both change the 'visual trial and the "/start'" 

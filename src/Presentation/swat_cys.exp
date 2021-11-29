@@ -1,5 +1,5 @@
 <ver>20.1</ver>
-<efn>C:\Users\Presentation\Desktop\Active Projects\swat_cystinosis\Presentation\swat_cys.exp</efn>
+<efn>E:\Finished paradigms\swat_cystinosis\Presentation\swat_cys.exp</efn>
 <author>cystinosis update: Douwe</author>
 <con>
 <pause>P</pause>
@@ -40,11 +40,12 @@
 <lfn></lfn>
 </docs>
 <dp_list></dp_list>
-<dsd>C:\Users\Presentation\Desktop\Active Projects\swat_cystinosis\Stimuli</dsd>
+<dsd>E:\Finished paradigms\swat_cystinosis\Stimuli</dsd>
 <dxv>8</dxv>
 <efs>
-<filename>C:\Users\Presentation\Desktop\Active Projects\swat_cystinosis\Presentation\swat_cys.sce</filename>
-<filename>C:\Users\Presentation\Desktop\Active Projects\swat_cystinosis\Presentation\swat_cys.pcl</filename>
+<filename>E:\Finished paradigms\swat_cystinosis\Presentation\swat_cys_1.sce</filename>
+<filename>E:\Finished paradigms\swat_cystinosis\Presentation\swat_cys_2.sce</filename>
+<filename>E:\Finished paradigms\swat_cystinosis\Presentation\swat_cys_1.pcl</filename>
 </efs>
 <exclusive_mouse>1</exclusive_mouse>
 <exp_version></exp_version>
@@ -82,7 +83,10 @@
 <pass></pass>
 <ssa>
 <asn>
-<sid>-1</sid>
+<sid>-2</sid>
+</asn>
+<asn>
+<sid>-2</sid>
 </asn>
 </ssa>
 </man>
@@ -97,6 +101,7 @@
 <ftp>
 <ccc>0</ccc>
 <do_upload>
+<sce>1</sce>
 <sce>1</sce>
 </do_upload>
 <host></host>
@@ -124,7 +129,7 @@
 <pindex>4294967295</pindex>
 </chan>
 </ip_chans>
-<lfd>C:\Users\Presentation\Desktop\Active Projects\swat_cystinosis\Logfiles</lfd>
+<lfd>E:\Finished paradigms\swat_cystinosis\Logfiles</lfd>
 <lnb>1</lnb>
 <lno>3</lno>
 <log>
@@ -167,9 +172,9 @@
 <il>0</il>
 <ivm>0</ivm>
 <mtype>dig</mtype>
-<piai>LPT3</piai>
+<piai>LPT1</piai>
 <pian>Parallel Port</pian>
-<pihpn>LPT3</pihpn>
+<pihpn>LPT1</pihpn>
 <pindex>1</pindex>
 <rs>1</rs>
 <rt>0</rt>
@@ -291,25 +296,6 @@
 <max_raw_pos>65535</max_raw_pos>
 <min_raw_pos>0</min_raw_pos>
 <name>HID-compliant mouse</name>
-</device>
-<device>
-<axis>
-<dead_zone>0</dead_zone>
-<max>1000</max>
-<min>-1000</min>
-<name>X Axis</name>
-<saturation>1</saturation>
-</axis>
-<axis>
-<dead_zone>0</dead_zone>
-<max>1000</max>
-<min>-1000</min>
-<name>Y Axis</name>
-<saturation>1</saturation>
-</axis>
-<device_type>1</device_type>
-<dx_device_type>20</dx_device_type>
-<name>WingMan Precision USB</name>
 </device>
 <device>
 <axis>
@@ -482,7 +468,20 @@
 <offset>12</offset>
 </idv>
 <overrides></overrides>
-<sfn>C:\Users\Presentation\Desktop\Active Projects\swat_cystinosis\Presentation\swat_cys.sce</sfn>
+<sfn>E:\Finished paradigms\swat_cystinosis\Presentation\swat_cys_1.sce</sfn>
+</sce>
+<sce>
+<idv>
+<device_type>2</device_type>
+<dx_device_type>18</dx_device_type>
+<ibn>Button 0</ibn>
+<idn>Mouse</idn>
+<index>0</index>
+<label></label>
+<offset>12</offset>
+</idv>
+<overrides></overrides>
+<sfn>E:\Finished paradigms\swat_cystinosis\Presentation\swat_cys_2.sce</sfn>
 </sce>
 <sct>
 <capture_device>
@@ -501,7 +500,7 @@
 <combine>0</combine>
 <ignore>1000</ignore>
 <isr>0</isr>
-<max_rec_dur>10</max_rec_dur>
+<max_rec_dur>60</max_rec_dur>
 <md></md>
 <mio></mio>
 <off_inter>200</off_inter>
@@ -515,7 +514,7 @@
 <sde>
 <buffer_length>1000</buffer_length>
 <custom_buf>primary</custom_buf>
-<default>0</default>
+<default>1</default>
 <dup_channels>0</dup_channels>
 <ex_period>10</ex_period>
 <halt_on_underrun>1</halt_on_underrun>
@@ -527,7 +526,7 @@
 <side_speakers>1</side_speakers>
 <use_rewind_distance>0</use_rewind_distance>
 </sde>
-<sdv>Speakers (2- Sound Blaster Audigy 5/Rx)</sdv>
+<sdv>Primary Sound Driver</sdv>
 <show_dis>1</show_dis>
 <show_parm>1</show_parm>
 <show_term>1</show_term>
