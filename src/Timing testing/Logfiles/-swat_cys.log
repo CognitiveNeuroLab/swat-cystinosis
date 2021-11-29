@@ -1,0 +1,88 @@
+Scenario - 
+Logfile written - 11/18/2021 09:28:42
+
+Subject	Trial	Event Type	Code	Time	TTime	Uncertainty	Duration	Uncertainty	ReqTime	ReqDur	Stim Type	Pair Index
+
+	1	Response	1	34600	4942	1
+	2	Response	1	39720	4897	1
+	3	Picture	201 start recording	40820	1000	1	4165	1	1000	next	other	0
+	4	Nothing	113	45088	103	1			90		other	0
+	4	Picture	isi	46985	1999	1	17992	1	1850	17960	other	0
+	5	Nothing	122	65234	90	1			90		other	0
+	5	Picture	isi	67143	1999	1	17993	1	1850	17960	other	0
+	6	Nothing	133	85392	90	1			90		other	0
+	6	Picture	isi	87301	1999	1	17993	1	1850	17960	other	0
+	7	Nothing	141	105550	90	1			90		other	0
+	7	Picture	isi	107459	1999	1	17993	1	1850	17960	other	0
+	8	Nothing	218	125709	90	1			90		other	0
+	8	Picture	isi	127618	1999	1	18108	1	1850	17960	other	0
+	8	Pause		140270	14651	NA	245116
+	8	Resume		140270	14651	NA
+	9	Nothing	228	145983	90	1			90		other	0
+	9	Picture	isi	147892	1999	1	18159	1	1850	17960	other	0
+	10	Nothing	235	166308	90	1			90		other	0
+	10	Picture	isi	168217	1999	1	18159	1	1850	17960	other	0
+	11	Nothing	246	186633	90	1			90		other	0
+	11	Picture	isi	188542	1999	1	18159	1	1850	17960	other	0
+	12	Nothing	111	206957	90	1			90		other	0
+	12	Picture	isi	208867	1999	1	18159	1	1850	17960	other	0
+	13	Nothing	123	227282	90	1			90		other	0
+	13	Picture	isi	229192	1999	1	18159	1	1850	17960	other	0
+	14	Nothing	134	247607	90	1			90		other	0
+	14	Picture	isi	249517	1999	1	18159	1	1850	17960	other	0
+	15	Nothing	143	267932	90	1			90		other	0
+	15	Picture	isi	269841	1999	1	18159	1	1850	17960	other	0
+	16	Nothing	215	288257	90	1			90		other	0
+	16	Picture	isi	290166	1999	1	18159	1	1850	17960	other	0
+	17	Nothing	225	308582	90	1			90		other	0
+	17	Picture	isi	310491	1999	1	18159	1	1850	17960	other	0
+	18	Nothing	236	328907	90	1			90		other	0
+	18	Picture	isi	330816	1999	1	18159	1	1850	17960	other	0
+	19	Nothing	245	349232	90	1			90		other	0
+	19	Picture	isi	351141	1999	1	18159	1	1850	17960	other	0
+	20	Nothing	114	369557	90	1			90		other	0
+	20	Picture	isi	371466	1999	1	18159	1	1850	17960	other	0
+	21	Nothing	121	389882	90	1			90		other	0
+	21	Picture	isi	391791	1999	1	18159	1	1850	17960	other	0
+	22	Nothing	133	410207	90	1			90		other	0
+	22	Picture	isi	412116	1999	1	18159	1	1850	17960	other	0
+	23	Nothing	141	430531	90	1			90		other	0
+	23	Picture	isi	432441	2000	1	18159	1	1850	17960	other	0
+	24	Nothing	217	450857	90	1			90		other	0
+	24	Picture	isi	452766	1999	1	18159	1	1850	17960	other	0
+	25	Nothing	228	471181	90	1			90		other	0
+	25	Picture	isi	473091	1999	1	18159	1	1850	17960	other	0
+	26	Nothing	236	491506	90	1			90		other	0
+	26	Picture	isi	493416	1999	1	18159	1	1850	17960	other	0
+	27	Nothing	248	511831	90	1			90		other	0
+	27	Picture	isi	513740	1999	1	18159	1	1850	17960	other	0
+	28	Nothing	113	532156	90	1			90		other	0
+	28	Picture	isi	534065	1999	1	18159	1	1850	17960	other	0
+	29	Nothing	122	552481	90	1			90		other	0
+	29	Picture	isi	554390	1999	1	18159	1	1850	17960	other	0
+	30	Nothing	134	572806	90	1			90		other	0
+	30	Picture	isi	574715	1999	1	18159	1	1850	17960	other	0
+	31	Nothing	144	593131	90	1			90		other	0
+	31	Picture	isi	595040	1999	1	18159	1	1850	17960	other	0
+	32	Nothing	218	613456	90	1			90		other	0
+	32	Picture	isi	615365	1999	1	18159	1	1850	17960	other	0
+	33	Nothing	225	633781	90	1			90		other	0
+	33	Picture	isi	635690	1999	1	18159	1	1850	17960	other	0
+	34	Nothing	235	654106	90	1			90		other	0
+	34	Picture	isi	656015	1999	1	18159	1	1850	17960	other	0
+	35	Nothing	246	674431	90	1			90		other	0
+	35	Picture	isi	676340	1999	1	18159	1	1850	17960	other	0
+	36	Nothing	111	694756	90	1			90		other	0
+	36	Picture	isi	696665	1999	1	18159	1	1850	17960	other	0
+	37	Nothing	121	715080	90	1			90		other	0
+	37	Picture	isi	716990	1999	1	18159	1	1850	17960	other	0
+	38	Nothing	133	735405	90	1			90		other	0
+	38	Picture	isi	737315	1999	1	18159	1	1850	17960	other	0
+	39	Nothing	144	755730	90	1			90		other	0
+	39	Picture	isi	757640	1999	1	24442	1	1850	17960	other	0
+	39	Quit		765859	10219	NA
+
+Testing for AR:
+Onset 0ms stable
+duration stim: ~200ms
+duration ISI : ~1832ms 

@@ -1,0 +1,106 @@
+Scenario - 
+Logfile written - 11/18/2021 09:30:56
+
+Subject	Trial	Event Type	Code	Time	TTime	Uncertainty	Duration	Uncertainty	ReqTime	ReqDur	Stim Type	Pair Index
+
+	1	Response	1	58212	17058	1
+	2	Response	1	62531	4218	1
+	3	Picture	201 start recording	63644	1000	1	4165	1	1000	next	other	0
+	4	Nothing	113	67899	90	1			90		other	0
+	4	Picture	isi	69808	1999	1	17993	1	1850	17960	other	0
+	5	Nothing	121	88058	90	1			90		other	0
+	5	Picture	isi	89967	1999	1	17993	1	1850	17960	other	0
+	6	Nothing	131	108216	90	1			90		other	0
+	6	Picture	isi	110125	1999	1	17993	1	1850	17960	other	0
+	7	Nothing	144	128374	90	1			90		other	0
+	7	Picture	isi	130283	1999	1	18159	1	1850	17960	other	0
+	8	Nothing	217	148699	90	1			90		other	0
+	8	Picture	isi	150608	1999	1	18159	1	1850	17960	other	0
+	9	Nothing	226	169024	90	1			90		other	0
+	9	Picture	isi	170933	1999	1	18159	1	1850	17960	other	0
+	10	Nothing	235	189349	90	1			90		other	0
+	10	Picture	isi	191258	1999	1	18159	1	1850	17960	other	0
+	11	Nothing	246	209674	90	1			90		other	0
+	11	Picture	isi	211583	1999	1	18159	1	1850	17960	other	0
+	12	Nothing	113	229999	90	1			90		other	0
+	12	Picture	isi	231908	1999	1	18159	1	1850	17960	other	0
+	13	Nothing	121	250324	90	1			90		other	0
+	13	Picture	isi	252233	1999	1	18159	1	1850	17960	other	0
+	14	Nothing	132	270649	90	1			90		other	0
+	14	Picture	isi	272558	1999	1	18159	1	1850	17960	other	0
+	15	Nothing	141	290974	90	1			90		other	0
+	15	Picture	isi	292883	1999	1	18159	1	1850	17960	other	0
+	16	Nothing	218	311299	90	1			90		other	0
+	16	Picture	isi	313208	1999	1	18159	1	1850	17960	other	0
+	17	Nothing	228	331623	90	1			90		other	0
+	17	Picture	isi	333533	1999	1	18159	1	1850	17960	other	0
+	18	Nothing	235	351948	90	1			90		other	0
+	18	Picture	isi	353858	1999	1	18159	1	1850	17960	other	0
+	19	Nothing	245	372273	90	1			90		other	0
+	19	Picture	isi	374182	1999	1	18159	1	1850	17960	other	0
+	20	Nothing	112	392598	90	1			90		other	0
+	20	Picture	isi	394507	1999	1	18159	1	1850	17960	other	0
+	21	Nothing	123	413090	90	1			90		other	0
+	21	Picture	isi	414999	1999	1	18159	1	1850	17960	other	0
+	22	Nothing	134	433415	90	1			90		other	0
+	22	Picture	isi	435324	1999	1	18159	1	1850	17960	other	0
+	23	Nothing	143	453739	90	1			90		other	0
+	23	Picture	isi	455649	1999	1	18159	1	1850	17960	other	0
+	24	Nothing	216	474064	90	1			90		other	0
+	24	Picture	isi	475974	1999	1	18159	1	1850	17960	other	0
+	25	Nothing	227	494389	90	1			90		other	0
+	25	Picture	isi	496298	1999	1	18159	1	1850	17960	other	0
+	26	Nothing	238	514714	90	1			90		other	0
+	26	Picture	isi	516623	1999	1	18159	1	1850	17960	other	0
+	27	Nothing	246	535039	90	1			90		other	0
+	27	Picture	isi	536948	1999	1	18159	1	1850	17960	other	0
+	28	Nothing	114	555364	90	1			90		other	0
+	28	Picture	isi	557273	1999	1	18159	1	1850	17960	other	0
+	29	Nothing	123	575689	90	1			90		other	0
+	29	Picture	isi	577598	1999	1	18159	1	1850	17960	other	0
+	30	Nothing	133	596014	90	1			90		other	0
+	30	Picture	isi	597923	1999	1	18159	1	1850	17960	other	0
+	31	Nothing	143	616339	90	1			90		other	0
+	31	Picture	isi	618248	1999	1	18159	1	1850	17960	other	0
+	32	Nothing	217	636664	90	1			90		other	0
+	32	Picture	isi	638573	1999	1	18159	1	1850	17960	other	0
+	33	Nothing	228	656989	90	1			90		other	0
+	33	Picture	isi	658898	1999	1	18159	1	1850	17960	other	0
+	34	Nothing	235	677314	90	1			90		other	0
+	34	Picture	isi	679223	1999	1	18159	1	1850	17960	other	0
+	35	Nothing	247	697638	90	1			90		other	0
+	35	Picture	isi	699548	1999	1	18159	1	1850	17960	other	0
+	36	Nothing	112	717963	90	1			90		other	0
+	36	Picture	isi	719872	1999	1	18159	1	1850	17960	other	0
+	37	Nothing	123	738288	90	1			90		other	0
+	37	Picture	isi	740197	1999	1	18159	1	1850	17960	other	0
+	38	Nothing	131	758613	90	1			90		other	0
+	38	Picture	isi	760522	1999	1	18159	1	1850	17960	other	0
+	39	Nothing	144	778938	90	1			90		other	0
+	39	Picture	isi	780847	1999	1	18159	1	1850	17960	other	0
+	40	Nothing	216	799263	90	1			90		other	0
+	40	Picture	isi	801172	1999	1	18159	1	1850	17960	other	0
+	41	Nothing	228	819588	90	1			90		other	0
+	41	Picture	isi	821497	1999	1	18159	1	1850	17960	other	0
+	42	Nothing	238	839913	90	1			90		other	0
+	42	Picture	isi	841822	1999	1	18159	1	1850	17960	other	0
+	43	Nothing	248	860238	90	1			90		other	0
+	43	Picture	isi	862147	1999	1	18159	1	1850	17960	other	0
+	44	Nothing	113	880562	90	1			90		other	0
+	44	Picture	isi	882472	1999	1	18159	1	1850	17960	other	0
+	45	Nothing	124	900887	90	1			90		other	0
+	45	Picture	isi	902797	1999	1	18159	1	1850	17960	other	0
+	46	Nothing	132	921212	90	1			90		other	0
+	46	Picture	isi	923122	1999	1	18159	1	1850	17960	other	0
+	47	Nothing	143	941537	90	1			90		other	0
+	47	Picture	isi	943446	1999	1	18159	1	1850	17960	other	0
+	48	Nothing	215	961862	90	1			90		other	0
+	48	Picture	isi	963771	1999	1	18159	1	1850	17960	other	0
+	49	Nothing	226	982187	90	1			90		other	0
+	49	Picture	isi	984096	1999	1	21805	1	1850	17960	other	0
+	49	Quit		990786	8689	NA
+
+Testing for AR:
+Onset 0ms stable
+duration stim: ~200ms
+duration ISI : ~1832ms 

@@ -1,9 +1,11 @@
+#instructions are click when Red=Vowel Click when green = Even
+
 #Declaring parameters
 active_buttons = 1; # Number of Buttons Used
 button_codes = 1; # Button Code (Tag Number)
 
 #refering the PCL file associated with this scenario file
-pcl_file = "swat_cys.pcl";
+pcl_file = "swat_cys_1.pcl";
 
 #Duration of Port Code (Tag Number) in milliseconds
 pulse_width = 5;                                  
@@ -92,6 +94,17 @@ trial{ # the first stim is too quick if there is no delay. This trial puts 2sec 
 	}code_event;
 }wait_trial;
 
+#douwe edit
+trial{ # This is to indentify what participants are responding to
+	trial_duration = 250; #2 sec before the first stim
+	stimulus_event {
+	picture default;
+	time=100;
+		code = "Red=Vowel Green=Even";  
+	port_code = 251; 
+	}type_event;
+}type_trial;
+#douwe edit
 
 #Visual Trial
 trial
