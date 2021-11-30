@@ -1,0 +1,455 @@
+## Swat_kids Paradigm
+#edits on 11/17/2021 by Douwe
+#instead of using wait_interval(isitime) added ISI as part of the trial (helped with registring response times and answers more correct)
+#added eyetracking 
+
+##ET##
+eye_tracker EyeLink = new eye_tracker( "PresLink" );#this starts the eyetracker , the name of this (currently "PresLink") is whatever your extention is called (sometimes "EyeTracker")
+int dummy_mode = 0; #if this is 1 you can run the paradigm without eyetracking
+if dummy_mode == 1 then
+	EyeLink.set_parameter("tracker_address", "");
+end;         
+#connect to Eyelink tracker.
+EyeLink.start_tracking();
+string edfname_final = logfile.subject() + "swat_1"; #names the EDF file, choose here the name of your individual edf file
+string edfname_out = "swat_1";
+
+#here we are checking if the edf file already exists and if so it add a +1 to the ending
+int cntr = 1;
+loop
+	bool good_edfname = false; 
+until
+	good_edfname == true
+begin
+	if file_exists(logfile_directory + edfname_final + ".edf") then
+		cntr = cntr + 1;
+		edfname_final = logfile.subject() + "swat_" + string(cntr); # + ".edf";
+		edfname_out = "swat_" + string(cntr) 
+	else
+		good_edfname = true
+	end;
+end;
+
+if edfname_out.count() > 8 then
+	exit("EDF Filename needs to be smaller than 8 characters long (letters, numbers and underscores only)"); #if your EDF filename is longer it might start giving trouble specially if you do more than 9 blocks
+end;
+#remove the filename extension, because it will be added back later 
+#(this allows user to enter EDF name either with or without the extension 
+#when running the script
+array<string> temp[0];
+edfname_out.split(".", temp);
+edfname_out = temp[1];
+#Tell the Host PC to open the EDF file
+EyeLink.set_parameter("open_edf_file",edfname_out+".edf");
+
+# STEP 1c SET DISPLAY PARAMETERS
+#create variables to store the monitor's width and height in pixels
+int display_height = display_device.height();
+int display_width  = display_device.width();
+
+#this sends a command to set the screen_pixel_coords parameter on the Host PC, 
+#which formats the eye position data to match that of the screen resolution
+EyeLink.send_command("screen_pixel_coords 0 0 " + string(display_width-1) + 
+	" " + string(display_height-1));
+	
+#this sends a message to the EDF tells Data Viewer the resolution of the experiment 
+#so that it can format its Trial View window appropriately
+EyeLink.send_message("DISPLAY_COORDS " + "0 0 " + string(display_width-1) + 
+	" " + string(display_height-1)); 
+
+
+#####  STEP 2: a) GET TRACKER VERSION; b)SELECT AVAILABLE SAMPLE/EVENT DATA
+string Eyelink_ver = EyeLink.get_parameter("tracker_version"); # get et version
+
+#tracker_ver will be something like EYELINK CL 4.48, but we want to get the 4.48
+array <string> string_array[5];
+Eyelink_ver.split(" ",string_array);
+double el_v = double(string_array[3]); #Host PC software version will be el_v
+
+term.print_line(el_v);
+
+### Step 2b SELECT AVAILABLE SAMPLE/EVENT DATA
+#Select which events are saved in the EDF file. Include everything just in case
+EyeLink.send_command("file_event_filter = LEFT,RIGHT,FIXATION,SACCADE,BLINK,MESSAGE,BUTTON,INPUT");	#this ensures that Gaze data is recorded 
+EyeLink.send_command("link_event_filter = LEFT,RIGHT,FIXATION,SACCADE,BLINK,BUTTON,INPUT");
+
+#First, check tracker version so as to determine whether to include 'HTARGET' 
+#to save head target sticker data for supported eye trackers
+#Then, send commands to set the file_sample_data and link_sample_data parameters, 
+#which specify which aspects of sample data will be recorded to the EDF file 
+#and which will be available over the Ethernet link between the Host PC and Display PC
+if (el_v >=4.0) then
+	#include HTARGET (head target) data if tracker is EyeLink 1000 or later
+	EyeLink.send_command("file_sample_data = LEFT,RIGHT,GAZE,AREA,GAZERES,STATUS,HTARGET,INPUT"); #Area token ensures Pupil size is recorded.
+	EyeLink.send_command("link_sample_data = LEFT,RIGHT,GAZE,GAZERES,AREA,STATUS,HTARGET,INPUT");
+else
+	EyeLink.send_command("file_sample_data = LEFT,RIGHT,GAZE,AREA,GAZERES,STATUS,INPUT");
+	EyeLink.send_command("link_sample_data = LEFT,RIGHT,GAZE,GAZERES,AREA,STATUS,INPUT"); 
+end;
+
+
+#####  STEP 3:CALIBRATE EYE TRACKER
+
+#start calibration with camera support. If calibration_type is set to 
+#et_calibrate_default and if the parameter 1 value is set to 1.0, 
+#then the user defined target with the name et_calibration will be ignored 
+EyeLink.calibrate( et_calibrate_default, 1.0, 0.0, 0.0 );
+
+##### CLEANUP SUBROUTINE -- CALLED WHEN THE SCRIPT ENDS #######################################
+
+#this subroutine is called at the end of the script or if the Esc key is pressed during 
+#the trial image presentation
+#it closes the EDF file, and transfers it over to the logfile directory of the experiment on the Display PC
+sub cleanup begin
+	EyeLink.send_command("set_idle_mode"); #eyelink goes in idle mode
+	EyeLink.send_command("clear_screen 0");#clear Host PC screen at end of session
+	wait_interval(500); 
+	EyeLink.send_command("close_data_file");#close the EDF file and then allow 100 msec to ensure it's closed
+	if dummy_mode != 1 then
+		EyeLink.set_parameter("get_edf_file",logfile_directory + edfname_final + ".edf");#transfer the EDF file to the logfile directory of the experiment	on the Display PC
+	end;
+	EyeLink.stop_tracking();
+end;	
+#Set the the tracker to idle mode.  
+#It's important to do this before using commands to transfer graphics to / do drawing on the Host PC
+EyeLink.send_command("set_idle_mode");
+wait_interval(50);#in ms
+EyeLink.set_parameter("transfer_image", et_bit.filename());
+
+
+int start;
+int isi;
+int pick_letter;
+int pick_number;
+
+
+int cur_letter = 0;
+int cur_number = 0;
+int cur_side = 0;
+int last_letter = 100;
+int last_number = 100;   
+int last_side = 100;
+int total_trials = 20; #douwe edit, so we can use it in more places instead of having to writing the int everywhere
+bool red = false; #Not sure what this does, but doesn't change it like this: (when false red==vowel green==even) (when true red==odd green=vowel)
+
+array <text> my_letter_red[8];
+my_letter_red[1] = a_red;
+my_letter_red[2] = e_red;
+my_letter_red[3] = i_red;
+my_letter_red[4] = u_red;  
+my_letter_red[5] = g_red;
+my_letter_red[6] = m_red;
+my_letter_red[7] = k_red;
+my_letter_red[8] = r_red;  
+
+
+array <text> my_letter_green[8];
+my_letter_green[1] = a_green;
+my_letter_green[2] = e_green;
+my_letter_green[3] = i_green;
+my_letter_green[4] = u_green;  
+my_letter_green[5] = g_green;
+my_letter_green[6] = m_green;
+my_letter_green[7] = k_green;
+my_letter_green[8] = r_green;  
+
+array <text> my_number_red[8];
+my_number_red[1] = two_red;
+my_number_red[2] = four_red;
+my_number_red[3] = six_red;
+my_number_red[4] = eight_red;
+my_number_red[5] = seven_red;
+my_number_red[6] = three_red;     
+my_number_red[7] = five_red;
+my_number_red[8] = nine_red;     
+
+array <text> my_number_green[8];
+my_number_green[1] = two_green;
+my_number_green[2] = four_green;
+my_number_green[3] = six_green;
+my_number_green[4] = eight_green;
+my_number_green[5] = seven_green;
+my_number_green[6] = three_green;     
+my_number_green[7] = five_green;
+my_number_green[8] = nine_green;     
+
+#Waiting 1 second before we start the experiment
+loop
+   int juice = clock.time()
+until
+   clock.time() - juice > 1000
+begin
+end;
+int count = 1;
+int the_side;  
+string side;
+string code_cong;
+string color_code;
+string the_code_str;
+int the_code;
+
+##ET##
+	EyeLink.set_recording(true);
+	wait_interval(100); #in ms
+##ET##
+
+loop ## so you have to double click and biosemi starts recording only then
+int wait_tr = 1;
+until
+wait_tr>2
+begin
+	start_trial.present();
+	wait_tr = wait_tr +1;
+end;
+wait_trial.present();
+type_trial.present();
+loop
+   start = 1
+until
+   start > total_trials
+begin
+   
+   
+   if red == false then
+      red = true;
+   else
+      red = false;
+   end;
+                          
+   loop
+      count = 1
+   until
+      count > 4
+   begin
+      
+      last_letter = cur_letter;
+      last_number = cur_number;
+      last_side = cur_side;
+            
+      #Getting Correct Letter
+      loop
+         bool letter_ahead = false
+      until
+         letter_ahead == true
+      begin
+         
+         pick_letter = random(1,8);         
+         cur_letter = pick_letter;        
+               
+         if last_letter != cur_letter then #We're ok
+            letter_ahead = true;
+         else
+            letter_ahead = false;    
+         end
+      end;
+      
+      #Getting Correct Number
+      loop
+            bool number_ahead = false
+      until
+            number_ahead == true
+      begin       
+      
+         pick_number = random(1,8);         
+         cur_number = pick_number;        
+               
+         if last_number != cur_number then #We're ok
+            number_ahead = true;
+         else
+            number_ahead = false;    
+         end
+      
+      end;
+      
+      change.clear();   
+         
+      the_side = random(1,2);      
+      if the_side == 1 then
+         the_side = 125;   
+      else
+         the_side = -125;
+      end;                                  
+      
+      cur_side = the_side;
+      
+      #repeat of attentional spotlight (Number on left, Letter on right)
+      if last_side == cur_side && cur_side == 1 then     
+         side = "1";                                       
+      #repeat of attentional spotlight (Number on right, Letter on left)
+      elseif last_side == cur_side && cur_side == 2 then     
+         side = "2";
+      #switch of attentional spotlight (Number from right to Left, Letter from left to right)
+      elseif last_side != cur_side && cur_side == 1 then     
+         side = "3";
+      #switch of attentional spotlight (Number from left to right, Letter from right to left)
+      elseif last_side != cur_side && cur_side == 2 then     
+         side = "4"
+      else
+      end;  
+      
+      if red == true then
+			#Letter congruent response
+			#We pick a congruent response task (Vowel, Even)  
+			if pick_letter < 5 && pick_number < 5 then 
+				code_cong = "1";
+				vis_se.set_target_button(1);
+				vis_se.set_response_active(true);
+			#Letter congruent no response	
+			#we pick a congruent no-response task (Consonant, Odd)
+			elseif pick_letter > 4 && pick_number > 4 then 
+				code_cong = "2";
+				vis_se.set_target_button(0);
+				vis_se.set_response_active(true);
+				#Letter incongruent response	
+			# we pick an incongruent task (Vowel, Odd)... 
+			# response depends on color (i.e. task to be performing)
+			elseif pick_letter < 5 && pick_number > 4 then 
+				code_cong = "3";
+				vis_se.set_target_button(1);
+				vis_se.set_response_active(true);
+			#Letter incongruent no response
+			# we pick an incongruent task (Consonant, Even)... 
+			# response depends on color (i.e. task to be performing)else
+			elseif pick_letter > 4 && pick_number < 5 then
+				code_cong = "4";
+				vis_se.set_target_button(0);
+				vis_se.set_response_active(true);
+			end;
+      else
+      			#Number congruent response
+      	#We pick a congruent response task (Vowel, Even)  
+			if pick_letter < 5 && pick_number < 5 then 
+				code_cong = "5";
+				vis_se.set_target_button(1);
+				vis_se.set_response_active(true);
+			#Number congruent no response	
+			#we pick a congruent no-response task (Consonant, Odd)
+			elseif pick_letter > 4 && pick_number > 4 then 
+				code_cong = "6";
+				vis_se.set_target_button(0);
+				vis_se.set_response_active(true);
+			#Number incongruent no response
+			# we pick an incongruent task (Vowel, Odd)... 
+			# response depends on color (i.e. task to be performing)
+			elseif pick_letter < 5 && pick_number > 4 then 
+				code_cong = "7";
+				vis_se.set_target_button(0);
+				vis_se.set_response_active(true);
+			#Number incongruent response
+			# we pick an incongruent task (Consonant, Even)... 
+			# response depends on color (i.e. task to be performing)else
+			elseif pick_letter > 4 && pick_number < 5 then
+				code_cong = "8";
+				vis_se.set_target_button(1);
+				vis_se.set_response_active(true);
+			end;
+      
+      end;
+      
+      if red == true then
+         color_code = "1"; 
+         the_code_str = color_code + string(count) + code_cong;
+         the_code = int(the_code_str);                         
+         
+         the_code_str = color_code + string(count) + code_cong + side;
+         
+         if count == 4 then
+			#	change.add_part(my_box,0,0);
+            change.add_part(my_number_red[pick_number], -the_side, 0); 
+            change.add_part(my_letter_red[pick_letter], the_side, 0);
+            
+         else
+            change.add_part(my_number_red[pick_number], -the_side, 0); 
+            change.add_part(my_letter_red[pick_letter], the_side, 0);
+         end;
+         
+         change.add_part(my_cross, 0, 0);
+         
+         trigger_event.set_event_code(the_code_str);
+         trigger_event.set_port_code(the_code);
+			##ET stuff
+			# this is also added to the eyelink file and will make it possible for you to afterwards see when a new trail started using the EDF file. You will need this to be able to tell which trial happened. 
+			EyeLink.send_command("record_status_message 'trial " + string(start) + "/" + string(total_trials) + "'"); #in this case i = the int that counts the trials, you should both change the 'visual trial and the "/start'" 
+			#this is more modifiable code that will allow you to add more info to your trials. 
+			EyeLink.send_string( "TRIALID " + string(start));#in this case i = the int that counts the trials,
+			# Or you can just tell the EDF file to timelock the start of the trial, or you can add variables that you created in the PCL and input in the EDF file what type of trial it is etc.
+			EyeLink.send_message("stimulus_onset"); # put this in the line before you present your stimulus in the PCL file
+         ##ET stuff
+			vis.present();
+			##ET stuff
+         EyeLink.send_command("record_status_message 'EndTrial'");
+			EyeLink.send_message("TRIAL_RESULT 0");  
+			##ET stuff
+      else
+         color_code = "2"; 
+         the_code_str = color_code + string(count) + code_cong;   
+         the_code = int(the_code_str);
+         
+         the_code_str = color_code + string(count) + code_cong + side;       
+         
+         if count == 4 then
+			#	change.add_part(my_box,0,0);
+            change.add_part(my_number_green[pick_number], - the_side, 0);
+            change.add_part(my_letter_green[pick_letter], the_side, 0);         
+         else
+            change.add_part(my_number_green[pick_number], - the_side, 0);
+            change.add_part(my_letter_green[pick_letter], the_side, 0);                  
+         end;
+         
+         change.add_part(my_cross, 0, 0);                           
+                                 
+         trigger_event.set_event_code(the_code_str);
+         trigger_event.set_port_code(the_code);
+			##ET stuff
+			# this is also added to the eyelink file and will make it possible for you to afterwards see when a new trail started using the EDF file. You will need this to be able to tell which trial happened. 
+			EyeLink.send_command("record_status_message 'trial " + string(start) + "/" + string(total_trials) + "'"); #in this case i = the int that counts the trials, you should both change the 'visual trial and the "/start'" 
+			#this is more modifiable code that will allow you to add more info to your trials. 
+			EyeLink.send_string( "TRIALID " + string(start));#in this case i = the int that counts the trials,
+			# Or you can just tell the EDF file to timelock the start of the trial, or you can add variables that you created in the PCL and input in the EDF file what type of trial it is etc.
+			EyeLink.send_message("stimulus_onset"); # put this in the line before you present your stimulus in the PCL file
+         ##ET stuff
+         vis.present(); 
+			##ET stuff
+			EyeLink.send_command("record_status_message 'EndTrial'");
+			EyeLink.send_message("TRIAL_RESULT 0");  
+			##ET stuff
+      end;
+           
+      count = count + 1;
+      start = start + 1;
+      
+   end;
+   
+   
+end;
+
+#this last bit of code will save your eyelink file
+end_trial.present();
+#cleanup();#gets the eyetracker to save all the files this is setup in the eyetracking part of this code
+
+output_file ofile1 = new output_file;
+ofile1.open_append( logfile.subject() + "_results_swat.txt"); 
+ofile1.print( "\n Block: " );
+ofile1.print( "\n Hits: " );
+ofile1.print( response_manager.total_hits());
+
+ofile1.print( "\n Misses: " );
+ofile1.print( response_manager.total_misses());
+
+ofile1.print( "\n Incorrect: " );
+ofile1.print( response_manager.total_incorrects());
+
+ofile1.print( "\n False Alarms: " );
+ofile1.print( response_manager.total_false_alarms());
+
+ofile1.print( "\n # Responses: " );
+ofile1.print( response_manager.total_response_count());
+
+ofile1.close();
+  loop
+		int start_me = clock.time()
+	until
+		clock.time() - start_me > 1000
+	begin
+	end;
+	

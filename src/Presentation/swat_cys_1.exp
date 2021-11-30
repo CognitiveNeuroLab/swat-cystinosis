@@ -1,5 +1,5 @@
 <ver>20.1</ver>
-<efn>E:\Finished paradigms\swat_cystinosis\Presentation\swat_cys.exp</efn>
+<efn>C:\Users\Presentation\Desktop\Active Projects\swat_cystinosis\Presentation\swat_cys_1.exp</efn>
 <author>cystinosis update: Douwe</author>
 <con>
 <pause>P</pause>
@@ -40,15 +40,16 @@
 <lfn></lfn>
 </docs>
 <dp_list></dp_list>
-<dsd>E:\Finished paradigms\swat_cystinosis\Stimuli</dsd>
+<dsd>C:\Users\Presentation\Desktop\Active Projects\swat_cystinosis\Stimuli</dsd>
 <dxv>8</dxv>
 <efs>
-<filename>E:\Finished paradigms\swat_cystinosis\Presentation\swat_cys_1.sce</filename>
-<filename>E:\Finished paradigms\swat_cystinosis\Presentation\swat_cys_2.sce</filename>
-<filename>E:\Finished paradigms\swat_cystinosis\Presentation\swat_cys_1.pcl</filename>
+<filename>C:\Users\Presentation\Desktop\Active Projects\swat_cystinosis\Presentation\swat_cys_1.sce</filename>
+<filename>C:\Users\Presentation\Desktop\Active Projects\swat_cystinosis\Presentation\swat_cys_1-practice.sce</filename>
+<filename>C:\Users\Presentation\Desktop\Active Projects\swat_cystinosis\Presentation\swat_cys_practice.pcl</filename>
+<filename>C:\Users\Presentation\Desktop\Active Projects\swat_cystinosis\Presentation\swat_cys.pcl</filename>
 </efs>
 <exclusive_mouse>1</exclusive_mouse>
-<exp_version></exp_version>
+<exp_version>V1</exp_version>
 <exparam>
 <man>
 <cfg>
@@ -129,7 +130,7 @@
 <pindex>4294967295</pindex>
 </chan>
 </ip_chans>
-<lfd>E:\Finished paradigms\swat_cystinosis\Logfiles</lfd>
+<lfd>C:\Users\Presentation\Desktop\Active Projects\swat_cystinosis\Logfiles</lfd>
 <lnb>1</lnb>
 <lno>3</lno>
 <log>
@@ -157,7 +158,7 @@
 </lslset>
 <maxpv></maxpv>
 <minpv></minpv>
-<nam>SWAT Cystinosis</nam>
+<nam>SWAT Cystinosis V1</nam>
 <one_processor>2</one_processor>
 <oports>
 <p>
@@ -468,7 +469,7 @@
 <offset>12</offset>
 </idv>
 <overrides></overrides>
-<sfn>E:\Finished paradigms\swat_cystinosis\Presentation\swat_cys_1.sce</sfn>
+<sfn>C:\Users\Presentation\Desktop\Active Projects\swat_cystinosis\Presentation\swat_cys_1.sce</sfn>
 </sce>
 <sce>
 <idv>
@@ -481,7 +482,7 @@
 <offset>12</offset>
 </idv>
 <overrides></overrides>
-<sfn>E:\Finished paradigms\swat_cystinosis\Presentation\swat_cys_2.sce</sfn>
+<sfn>C:\Users\Presentation\Desktop\Active Projects\swat_cystinosis\Presentation\swat_cys_1-practice.sce</sfn>
 </sce>
 <sct>
 <capture_device>
@@ -500,7 +501,7 @@
 <combine>0</combine>
 <ignore>1000</ignore>
 <isr>0</isr>
-<max_rec_dur>60</max_rec_dur>
+<max_rec_dur>10</max_rec_dur>
 <md></md>
 <mio></mio>
 <off_inter>200</off_inter>
@@ -557,7 +558,7 @@
 <vt>0</vt>
 </trigger_mode>
 <udt>0</udt>
-<ulo>Collected in AR</ulo>
+<ulo>Collected in KL</ulo>
 <unc>1</unc>
 <upb>1</upb>
 <urp>0</urp>

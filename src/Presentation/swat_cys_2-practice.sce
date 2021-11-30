@@ -1,13 +1,14 @@
 #instructions are click when Green=Vowel Click when Red = Even
 #Participant only does either only V1 or only V2
 #The next participant will do the other version. 
+#practice run does not save Eyetracker and is only 20 instead of 60 trials
 
 #Declaring parameters
 active_buttons = 1; # Number of Buttons Used
 button_codes = 1; # Button Code (Tag Number)
 
 #refering the PCL file associated with this scenario file
-pcl_file = "swat_cys.pcl";
+pcl_file = "swat_cys_practice.pcl";
 
 #Duration of Port Code (Tag Number) in milliseconds
 pulse_width = 5;                                  
@@ -89,20 +90,15 @@ trial{ #this is the first screen to prepare people
       x=0;y=0;};
 }start_trial;
 
-trial{
+trial{ # the first stim is too quick if there is no delay. This trial puts 2sec between the start and the stim
 	trial_duration = 5000; 
 	stimulus_event {
-		picture {
-		text {caption ="If the text is red click when the number is even,  \n \n If the text is green, click for a Vowel"; font_size = 20;};
-            x=0;y=0;};
+	picture {
+		text {caption ="If the text is red, click for a Vowel \n \n If the text is green, click when the number is even"; font_size = 20;};
+      x=0;y=0;};
 		duration = 3000; #so that there is a fixation cross 2 seconds before the first trial and people can focus
-	}pic_event;
-	stimulus_event {
-		picture default;
-		time=3000;		
-		duration = 100; #so that there is a fixation cross 2 seconds before the first trial and people can focus
 		code = "201 start recording";  
-		port_code = 201; 
+	#port_code = 201; #Don't want to save this in the BDF
 	}code_event;
 }wait_trial;
 
