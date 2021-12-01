@@ -14,7 +14,7 @@
 
 <h3 align="center">Swat experiment Cystinosis Kids version</h3>
 
-<h4 align="center"> This is an addaptation of the Swat experiment used in Wylie, Javitt,Foxe (2003) "Task switching: a high-density electrical mapping study". It runs on Presentation® NeuroBehavioral Systems, This task is adapted for the Cystinosis experiment battery (2021)</h4>
+<h4 align="center"> This is an adaptation of the Swat experiment used in Wylie, Javitt,Foxe (2003) "Task switching: a high-density electrical mapping study". It runs on Presentation® NeuroBehavioral Systems, This task is adapted for the Cystinosis experiment battery (2021)</h4>
 
 
 **Table of Contents**
@@ -25,7 +25,7 @@
 3. [Info about the experiment](#info-about-the-experiment)
     - [Stimuli](#stimuli)
     - [Logfiles](#logfiles)
-    - [V1 and V2](#v1_and_v2)
+    - [V1 and V2](#v1-and-v2)
     - [Instructions](#instructions)
     - [Trigger codes](#trigger-codes)
     - [Timing](#timing)
@@ -51,14 +51,16 @@ This project is using the same paradigm with adaptations on a different group of
 
 [Download this Repo](https://github.com/CognitiveNeuroLab/swat-experiment)
 
-The experiment itself is located in the presenation folder.
+The experiment itself is located in the presentation folder.
 
 
 ## Info about the experiment
 
 ### Stimuli
 
-The stimuli folder only has a template figure for the eyetracker. All the stimuli are created by presentation. For this paradigm that means a fixation cross with either a letter or a number on the left and write of it. These are all colored Red or Green depending on what trial is happening. 
+The stimuli folder only has a template figure for the eye tracker. All the stimuli are created by presentation. For this paradigm that means a fixation cross with either a letter or a number on the left and right of it. These are all colored Red or Green depending on what trial is happening. There are always 4 stimuli of 1 color in a row.  
+  
+![Stim example](https://github.com/CognitiveNeuroLab/swat-experiment/blob/main/images/stim.png)    
 
 ### Logfiles
 
@@ -70,7 +72,7 @@ There are 2 versions of the paradigm. This is done so that half of the participa
 
 ### Instructions
 
-Before running the paradigm we run the "swat_cys_1-practice" or "swat_cys_2-practice". The difference between this and the "normal" experiment is that this only has 20 trials instead of 60 and that it  doesn't save the eyetracker file. Version 1 and Version 2 have different instructions. The instructions are as discribed in the text above.   
+Before running the paradigm we run the "swat_cys_1-practice" or "swat_cys_2-practice". The difference between this and the "normal" experiment is that this only has 20 trials instead of 60 and that it  doesn't save the eye tracker file. Version 1 and Version 2 have different instructions. The instructions are as described in the text above.   
 
 
 ### Trigger codes
@@ -80,8 +82,25 @@ The presentation software sends codes to the EEG system so that the responses an
 port code 201 = start recording
 port code 200 = pause recording 
 port code 1   = mouse button
-the rest still needs updating
-```
+port code 251 = Version 1
+port code 252 = version 2
+```  
+The trigger codes related to the stimuli are created based on how presentation creates the stimuli. This means the following: 
+Each stimuli (letter/number + letter/number) has a 3 digit code.  
+- The first number (1 or 2) represents if the color of the stimulus is red (1) or green (2).  
+- The second number (1,2,3 or 4) represents how many stimuli of that color have happened (1= first one 2=second one 3=third one 4=last one)
+- The third number (1,2,3,4,5,6,7 or 8) represents what is presented.  
+  - 1 = Vowel + even + red  
+  - 2 = Consonant + odd + red
+  - 3 = Vowel + odd + red
+  - 4 = Consonant + even + red
+  - 5 = Vowel + even + green
+  - 6 = Consonant + odd + green
+  - 7 = Vowel + odd + green  
+  - 8 = Consonant + even + green  
+  
+For a more detailed list see the excel file in the "Settings and setup" folder.
+
 
 ### Timing
 The reason this experiment is coded in presentation, is because of the timing resolution of this software/language. When setup correctly this experiment has potentially 0ms of jitter. This will be measured here at our lab, using an oscilloscope. It is critical that this is re-tested before EEG data is collected. This has not yet happened because we haven't decided on the duration of the trials.
@@ -93,13 +112,13 @@ This is how long should all the trials last.
     
 1 trial takes 2042ms. Each block has 60 trials and we run 5 blocks to get enough EEG data.
 
-Using the files in the "timing Testing" folder we tested the timing between the stimulus showing up on the screen and the trigger (using an oscilloscope) We made some adjustements (see the "trigger_event" in the scenario files). **Currently there is 0ms between the onset of any stimulus and when the trigger is send**. Important to note is that if this paradigm is ran anywhere else this might not be the case due to hardware differences and this needs to be checked. 
+Using the files in the "timing Testing" folder we tested the timing between the stimulus showing up on the screen and the trigger (using an oscilloscope) We made some adjustments (see the "trigger_event" in the scenario files). **Currently there is 0ms between the onset of any stimulus and when the trigger is send**. Important to note is that if this paradigm is ran anywhere else this might not be the case due to hardware differences and this needs to be checked. 
 
 As you can see below, the onset of the trigger (orange) is at the same time as where the stimuli exceed the average threshold (blue)
 ![Timing](https://github.com/CognitiveNeuroLab/swat-experiment/blob/main/images/timing_onset.png)
 
 **if you plan to use this paradigm** 
-You need to do the same and test if for your setup the timing is also okay. This timing is dictated by the refreshrate of your screen, the quality of your computer and potentially other minor factors. If you want to change the timing you can change  "deltat = ..". Whenever this shows up in the code it will delay the sending of the trigger by x amount of miliseconds. So in our case we noticed the screen being 9ms delayed, so this is why we delay the trigger by the same amount. 
+You need to do the same and test if for your setup the timing is also okay. This timing is dictated by the refresh rate of your screen, the quality of your computer and potentially other minor factors. If you want to change the timing you can change  "deltat = ..". Whenever this shows up in the code it will delay the sending of the trigger by x amount of milliseconds. So in our case we noticed the screen being 9ms delayed, so this is why we delay the trigger by the same amount. 
 
 ### Data collection
 This experiment is used to collected EEG data, eye tracking data and RT data.  
