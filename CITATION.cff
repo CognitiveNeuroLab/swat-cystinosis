@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Horsthuis"
+  given-names: "Douwe John"
+- family-names: "Francisco"
+  given-names: "Ana Alves"
+title: "swat-experiment"
+version: 1.0.0
+doi: 10.5281/zenodo.5748291
+date-released: 2021-12-01
+url: "https://github.com/CognitiveNeuroLab/swat-experiment"
