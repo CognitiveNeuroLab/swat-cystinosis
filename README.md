@@ -87,17 +87,17 @@ port code 252 = version 2
 ```  
 The trigger codes related to the stimuli are created based on how presentation creates the stimuli. This means the following: 
 Each stimuli (letter/number + letter/number) has a 3 digit code.  
-- The first number (1 or 2) represents if the color of the stimulus is red (1) or green (2).  
+- The first number (1 or 2) represents if the color of the stimulus is in V1 red (1) or green (2) and in V2 red (2) green (1) 
 - The second number (1,2,3 or 4) represents how many stimuli of that color have happened (1= first one 2=second one 3=third one 4=last one)
 - The third number (1,2,3,4,5,6,7 or 8) represents what is presented.  
-  - 1 = Vowel + even + red  
-  - 2 = Consonant + odd + red
-  - 3 = Vowel + odd + red
-  - 4 = Consonant + even + red
-  - 5 = Vowel + even + green
-  - 6 = Consonant + odd + green
-  - 7 = Vowel + odd + green  
-  - 8 = Consonant + even + green  
+  - 1 = Vowel + even + (v1)red(V2)green  
+  - 2 = Consonant + odd + (v1)red(V2)green  
+  - 3 = Vowel + odd + (v1)red(V2)green  
+  - 4 = Consonant + even + (v1)red(V2)green  
+  - 5 = Vowel + even + (v1)green(v2)red
+  - 6 = Consonant + odd + (v1)green(v2)red
+  - 7 = Vowel + odd + (v1)green(v2)red 
+  - 8 = Consonant + even + (v1)green(v2)red 
   
 For a more detailed list see the excel file in the "Settings and setup" folder.
 
